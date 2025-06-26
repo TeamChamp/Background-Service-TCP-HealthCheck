@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Champ.TCPHealthCheck", "Champ.TCPHealthCheck.csproj", "{36B955AA-71AD-45E5-B14E-B47A128E9853}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Champ.TCPHealthProbe", "Champ.TCPHealthProbe.csproj", "{36B955AA-71AD-45E5-B14E-B47A128E9853}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{67950AE4-A9A0-439E-AB2E-674FF223F0C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
