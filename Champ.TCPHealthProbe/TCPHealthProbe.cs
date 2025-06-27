@@ -14,8 +14,6 @@ public class TCPHealthProbe(HealthCheckService healthCheckService, ILogger<TCPHe
 
     private readonly TimeSpan _period = TimeSpan.FromSeconds(5);
 
-    // Attach TCP listener to the port in configuration
-
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         logger.LogInformation("Started health check service");
@@ -41,7 +39,6 @@ public class TCPHealthProbe(HealthCheckService healthCheckService, ILogger<TCPHe
     {
         try
         {
-            // Get health check results
             var result = await _healthCheckService.CheckHealthAsync(token);
             var isHealthy = result.Status == HealthStatus.Healthy;
 
@@ -84,11 +81,17 @@ public class TCPHealthProbe(HealthCheckService healthCheckService, ILogger<TCPHe
 
             logger.LogDebug("Heartbeat check executed");
         }
-#pragma warning disable CA1031 // Do not catch general exception types
         catch (Exception ex)
         {
             logger.LogCritical(ex, "An error occurred while checking heartbeat");
         }
-#pragma warning restore CA1031 // Do not catch general exception types
+    }
+    
+    /// <inheritdoc />
+    public override void Dispose()
+    {
+        GC.SuppressFinalize(this);
+        _listener.Stop();
+        base.Dispose();
     }
 }
